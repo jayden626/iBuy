@@ -5,7 +5,8 @@
     <string name="common">Common Items</string>
 
     <string name="user_login">Login</string>
-    <string name="add_remove_users">Add/Remove User</string>
+    <string name="user_logout">Logout</string>
+    <string name="add_users">Create New User</string>
     <string name="add_route">Add to Route</string>
     <string name="add_to_list">Add to Shopping List</string>
     <string name="alert_off">No New Alerts</string>
