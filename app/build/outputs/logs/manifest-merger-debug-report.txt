@@ -1,6 +1,6 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\Jayden\AndroidStudioProjects\iBuy\app\src\main\AndroidManifest.xml:2:1-22:12
+ADDED from C:\Users\Jayden\AndroidStudioProjects\iBuy\app\src\main\AndroidManifest.xml:2:1-27:12
 	package
 		ADDED from C:\Users\Jayden\AndroidStudioProjects\iBuy\app\src\main\AndroidManifest.xml:3:5-36
 		INJECTED from C:\Users\Jayden\AndroidStudioProjects\iBuy\app\src\main\AndroidManifest.xml
@@ -14,7 +14,7 @@ ADDED from C:\Users\Jayden\AndroidStudioProjects\iBuy\app\src\main\AndroidManife
 		INJECTED from C:\Users\Jayden\AndroidStudioProjects\iBuy\app\src\main\AndroidManifest.xml
 		INJECTED from C:\Users\Jayden\AndroidStudioProjects\iBuy\app\src\main\AndroidManifest.xml
 application
-ADDED from C:\Users\Jayden\AndroidStudioProjects\iBuy\app\src\main\AndroidManifest.xml:5:5-20:19
+ADDED from C:\Users\Jayden\AndroidStudioProjects\iBuy\app\src\main\AndroidManifest.xml:5:5-25:19
 MERGED from [com.android.support:appcompat-v7:24.2.1] C:\Users\Jayden\AndroidStudioProjects\iBuy\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\24.2.1\AndroidManifest.xml:25:5-20
 MERGED from [com.android.support:support-v4:24.2.1] C:\Users\Jayden\AndroidStudioProjects\iBuy\app\build\intermediates\exploded-aar\com.android.support\support-v4\24.2.1\AndroidManifest.xml:25:5-20
 MERGED from [com.android.support:support-compat:24.2.1] C:\Users\Jayden\AndroidStudioProjects\iBuy\app\build\intermediates\exploded-aar\com.android.support\support-compat\24.2.1\AndroidManifest.xml:25:5-20
@@ -56,6 +56,26 @@ activity#com.urch.chatwin.ibuy.AddList
 ADDED from C:\Users\Jayden\AndroidStudioProjects\iBuy\app\src\main\AndroidManifest.xml:19:9-44
 	android:name
 		ADDED from C:\Users\Jayden\AndroidStudioProjects\iBuy\app\src\main\AndroidManifest.xml:19:19-42
+activity#com.urch.chatwin.ibuy.CommonList
+ADDED from C:\Users\Jayden\AndroidStudioProjects\iBuy\app\src\main\AndroidManifest.xml:20:9-47
+	android:name
+		ADDED from C:\Users\Jayden\AndroidStudioProjects\iBuy\app\src\main\AndroidManifest.xml:20:19-45
+activity#com.urch.chatwin.ibuy.UserCreate
+ADDED from C:\Users\Jayden\AndroidStudioProjects\iBuy\app\src\main\AndroidManifest.xml:21:9-48
+	android:name
+		ADDED from C:\Users\Jayden\AndroidStudioProjects\iBuy\app\src\main\AndroidManifest.xml:21:19-45
+activity#com.urch.chatwin.ibuy.UserMenu
+ADDED from C:\Users\Jayden\AndroidStudioProjects\iBuy\app\src\main\AndroidManifest.xml:22:9-46
+	android:name
+		ADDED from C:\Users\Jayden\AndroidStudioProjects\iBuy\app\src\main\AndroidManifest.xml:22:19-43
+activity#com.urch.chatwin.ibuy.UserLogin
+ADDED from C:\Users\Jayden\AndroidStudioProjects\iBuy\app\src\main\AndroidManifest.xml:23:9-47
+	android:name
+		ADDED from C:\Users\Jayden\AndroidStudioProjects\iBuy\app\src\main\AndroidManifest.xml:23:19-44
+activity#com.urch.chatwin.ibuy.InfoMenu
+ADDED from C:\Users\Jayden\AndroidStudioProjects\iBuy\app\src\main\AndroidManifest.xml:24:9-46
+	android:name
+		ADDED from C:\Users\Jayden\AndroidStudioProjects\iBuy\app\src\main\AndroidManifest.xml:24:19-43
 uses-sdk
 INJECTED from C:\Users\Jayden\AndroidStudioProjects\iBuy\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 MERGED from [com.android.support:appcompat-v7:24.2.1] C:\Users\Jayden\AndroidStudioProjects\iBuy\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\24.2.1\AndroidManifest.xml:21:5-23:78

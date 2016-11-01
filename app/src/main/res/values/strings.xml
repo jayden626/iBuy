@@ -29,13 +29,13 @@
     <string name="location5">Whole Foods</string>
     <string name="location6">Bashas</string>
     <string name="location7">Albertsons</string>
-    <string name="location8">Kohl's</string>
-    <string name="location9">Dillard's</string>
+    <string name="location8">Kohl\'s</string>
+    <string name="location9">Dillard\'s</string>
     <string name="location10">JC Penny</string>
     <string name="location11">Walmart</string>
     <string name="location12">Target</string>
     <string name="location13">Safeway</string>
-    <string name="location14">Macy's</string>
+    <string name="location14">Macy\'s</string>
     <string name="location15">Best Buy</string>
     <string name="location16">Sears</string>
 </resources>

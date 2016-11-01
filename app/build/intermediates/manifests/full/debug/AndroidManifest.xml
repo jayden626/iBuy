@@ -23,6 +23,11 @@
         </activity>
         <activity android:name="com.urch.chatwin.ibuy.List" />
         <activity android:name="com.urch.chatwin.ibuy.AddList" />
+        <activity android:name="com.urch.chatwin.ibuy.CommonList" />
+        <activity android:name="com.urch.chatwin.ibuy.UserCreate" />
+        <activity android:name="com.urch.chatwin.ibuy.UserMenu" />
+        <activity android:name="com.urch.chatwin.ibuy.UserLogin" />
+        <activity android:name="com.urch.chatwin.ibuy.InfoMenu" />
     </application>
 
 </manifest>

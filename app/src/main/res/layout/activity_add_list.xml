@@ -5,7 +5,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:scrollbars="vertical">
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="fill_parent"
         android:orientation="vertical"
         android:layout_height="wrap_content">
@@ -13,25 +13,9 @@
         <EditText
             android:id="@+id/item_name"
             android:layout_height="wrap_content"
-            android:layout_width="384dp"
+            android:layout_width="wrap_content"
             android:hint="@string/item_name"
             android:inputType="text"/>
-
-        <EditText
-            android:id="@+id/item_quantity"
-            android:layout_height="wrap_content"
-            android:layout_width="384dp"
-            android:hint="@string/item_quantity"
-            android:inputType="number"/>
-
-        <EditText
-            android:id="@+id/item_cost"
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            android:inputType="number"
-            android:layout_gravity="center_horizontal"
-            android:numeric="decimal"
-            android:hint="@string/item_cost" />
 
         <Spinner
             android:id="@+id/category"
@@ -40,6 +24,7 @@
             android:layout_width="fill_parent"
             android:entries="@array/category_list"
             android:spinnerMode="dropdown"
+            android:layout_below="@id/item_name"
             android:focusable="true" />
 
         <Spinner
@@ -50,21 +35,76 @@
             android:entries="@array/location_list"
             android:layout_gravity="center_horizontal"
             android:spinnerMode="dropdown"
+            android:layout_below="@id/category"
             android:focusable="true" />
+
+        <LinearLayout
+            android:id="@+id/layout1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/location"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/quantity_up"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:text="+"/>
+
+            <EditText
+                android:id="@+id/item_quantity"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:hint="@string/item_quantity"
+                android:layout_weight="8"
+                android:inputType="number" />
+
+            <Button
+                android:id="@+id/quantity_down"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:text="-"/>
+
+            <EditText
+                android:id="@+id/item_cost"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:inputType="number"
+                android:textAlignment="textEnd"
+                android:layout_weight="14"
+                android:hint="@string/item_cost" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/layout1"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/date_picker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/due"
+                android:onClick="showDatePickerDialog" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Chosen date"/>
+        </LinearLayout>
 
         <ToggleButton
             android:id="@+id/favourite"
             android:layout_width="match_parent"
             android:layout_height="63dp"
             android:textOn="Common item"
-            android:textOff="Non-common item"/>
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/due"
-            android:onClick="showDatePickerDialog" />
+            android:textOff="Non-common item"
+            android:layout_below="@id/layout2" />
 
 
-    </LinearLayout>
+    </RelativeLayout>
 </ScrollView>
