@@ -3,7 +3,7 @@
         <item name="android:background">#323331</item>
     </style>
 
-    <style name="CustomTheme" parent="android:Theme">
+    <style name="CustomTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowTitleSize">35dip</item>
         <item name="android:windowTitleBackgroundStyle">@style/CustomWindowTitleBackground</item>
     </style>
