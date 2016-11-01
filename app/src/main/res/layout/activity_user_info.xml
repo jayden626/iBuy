@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_title"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.urch.chatwin.ibuy.InfoMenu">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/app_name"
+        android:textSize="50sp"
+        android:textColor="#000000"
+        android:textAlignment="center"
+        android:id="@+id/title"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"/>
+
+    <Button
+        android:layout_width="75dp"
+        android:layout_height="60dp"
+        android:text="@string/alert_off"
+        android:id="@+id/alert"
+        android:background="#EEEEEE"
+        android:onClick="@string/alert_on"
+        android:layout_marginTop="56dp"
+        android:layout_below="@+id/title"
+        android:layout_alignStart="@+id/add_to_list" />
+
+    <Button
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:text="@string/add_to_list"
+        android:id="@+id/add_to_list"
+        android:background="#EEEEEE"
+        android:layout_below="@+id/alert"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"/>
+
+    <Button
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:text="@string/add_route"
+        android:id="@+id/add_route"
+        android:background="#EEEEEE"
+        android:layout_below="@+id/add_to_list"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"/>
+
+
+    <Button
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:text="@string/add_remove_users"
+        android:id="@+id/add_remove_users"
+        android:background="#EEEEEE"
+        android:layout_below="@+id/add_route"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"/>
+
+    <Button
+        android:layout_width="75dp"
+        android:layout_height="60dp"
+        android:text="Create a new Alert"
+        android:id="@+id/create_alert"
+        android:background="#EEEEEE"
+        android:onClick="@string/alert_on"
+        android:layout_alignTop="@+id/alert"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="75dp"
+        android:layout_height="60dp"
+        android:text="Shopping Checklist"
+        android:id="@+id/button"
+        android:background="#EEEEEE"
+        android:onClick="@string/alert_on"
+        android:layout_alignTop="@+id/create_alert"
+        android:layout_alignEnd="@+id/add_to_list" />
+
+
+</RelativeLayout>

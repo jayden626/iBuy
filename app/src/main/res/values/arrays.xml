@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="category_list">
+        <item>@string/category1</item>
+        <item>@string/category2</item>
+        <item>@string/category3</item>
+        <item>@string/category4</item>
+    </string-array>
+    <string-array name="location_list">
+        <item>@string/location1</item>
+        <item>@string/location2</item>
+        <item>@string/location3</item>
+        <item>@string/location4</item>
+        <item>@string/location5</item>
+        <item>@string/location6</item>
+        <item>@string/location7</item>
+        <item>@string/location8</item>
+        <item>@string/location9</item>
+        <item>@string/location10</item>
+        <item>@string/location11</item>
+        <item>@string/location12</item>
+        <item>@string/location13</item>
+        <item>@string/location14</item>
+        <item>@string/location15</item>
+        <item>@string/location16</item>
+
+    </string-array>
+</resources>
