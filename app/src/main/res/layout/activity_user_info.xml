@@ -8,7 +8,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.urch.chatwin.ibuy.InfoMenu">
+    tools:context="com.urch.chatwin.ibuy.userInfo">
 
     <TextView
         android:layout_width="wrap_content"
@@ -41,7 +41,8 @@
         android:background="#EEEEEE"
         android:layout_below="@+id/alert"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"/>
+        android:layout_marginTop="30dp"
+        android:onClick="addItem" />
 
     <Button
         android:layout_width="250dp"
@@ -62,7 +63,8 @@
         android:background="#EEEEEE"
         android:layout_below="@+id/add_route"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"/>
+        android:layout_marginTop="30dp"
+        android:onClick="logOut" />
 
     <Button
         android:layout_width="75dp"
@@ -80,7 +82,7 @@
         android:text="Shopping Checklist"
         android:id="@+id/button"
         android:background="#EEEEEE"
-        android:onClick="@string/alert_on"
+        android:onClick="showList"
         android:layout_alignTop="@+id/create_alert"
         android:layout_alignEnd="@+id/add_to_list" />
 

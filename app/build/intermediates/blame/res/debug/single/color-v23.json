@@ -12,6 +12,10 @@
         "source": "C:\\Users\\Charles Chatwin\\AndroidStudioProjects\\iBuy\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\color-v23\\abc_tint_seek_thumb.xml"
     },
     {
+        "merged": "C:\\Users\\Charles Chatwin\\AndroidStudioProjects\\iBuy\\app\\build\\intermediates\\res\\merged\\debug\\color-v23\\design_tint_password_toggle.xml",
+        "source": "C:\\Users\\Charles Chatwin\\AndroidStudioProjects\\iBuy\\app\\build\\intermediates\\exploded-aar\\com.android.support\\design\\24.2.1\\res\\color-v23\\design_tint_password_toggle.xml"
+    },
+    {
         "merged": "C:\\Users\\Charles Chatwin\\AndroidStudioProjects\\iBuy\\app\\build\\intermediates\\res\\merged\\debug\\color-v23\\abc_tint_btn_checkable.xml",
         "source": "C:\\Users\\Charles Chatwin\\AndroidStudioProjects\\iBuy\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\color-v23\\abc_tint_btn_checkable.xml"
     },
