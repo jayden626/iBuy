@@ -12,7 +12,7 @@ import android.widget.DatePicker;
 
 import java.util.Calendar;
 
-public class AddList extends Activity {
+public class AddList extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,5 +43,9 @@ public class AddList extends Activity {
         public void onDateSet(DatePicker view, int year, int month, int day) {
             // Do something with the date chosen by the user
         }
+    }
+
+    public void addItem(View v){
+        //TODO: Implement storage in database
     }
 }
