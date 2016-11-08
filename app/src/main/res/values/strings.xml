@@ -3,6 +3,7 @@
     <string name="list">Shopping List</string>
     <string name="users">Users</string>
     <string name="common">Common Items</string>
+    <string name="add_remove_users">Add/Remove Users</string>
 
     <string name="user_login">Login</string>
     <string name="user_logout">Logout</string>
