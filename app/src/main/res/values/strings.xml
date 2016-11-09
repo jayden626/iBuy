@@ -12,6 +12,7 @@
     <string name="add_to_list">Add to Shopping List</string>
     <string name="alert_off">No New Alerts</string>
     <string name="alert_on">New Alert</string>
+    <string name="select_user">Select User</string>
 
     <string name="item_name">Item Name</string>
     <string name="item_quantity">Quantity</string>

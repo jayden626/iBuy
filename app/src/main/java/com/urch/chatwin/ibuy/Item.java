@@ -1,6 +1,8 @@
 package com.urch.chatwin.ibuy;
 
 import java.io.Serializable;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 /**
@@ -17,8 +19,9 @@ public class Item implements Serializable {
     private Calendar entered;
     private Calendar due;
     private boolean isCommon;
+    private int uID;
 
-    public Item(int iID, String iName, String iCategory, String iLocation, double iCost, int iQuant, long iEnt, long iDue, boolean icom){
+    public Item(int iID, String iName, String iCategory, String iLocation, double iCost, int iQuant, long iEnt, long iDue, boolean icom, int iUID){
         id = iID;
         name = iName;
         category = iCategory;
@@ -30,6 +33,7 @@ public class Item implements Serializable {
         due = Calendar.getInstance();
         due.setTimeInMillis(iDue);
         isCommon = icom;
+        uID = iUID;
     }
 
     public void setId(int id) {
@@ -68,6 +72,10 @@ public class Item implements Serializable {
         isCommon = common;
     }
 
+    public void setuID(int uID) {
+        this.uID = uID;
+    }
+
     public int getId() {
         return id;
     }
@@ -104,7 +112,12 @@ public class Item implements Serializable {
         return isCommon;
     }
 
-    public static void addToList(Item i){
+    public int getuID() {
+        return uID;
+    }
 
+    public String toString(){
+        DateFormat formatter= SimpleDateFormat.getDateInstance();
+        return "name: "+name+" quan: " + quantity + " cost: "+cost+" category: "+category+" location: "+location+" due: "+ formatter.format(due.getTime()) + " entered: " + formatter.format(entered.getTime()) + " common: " + String.valueOf(isCommon) + " user: " + uID;
     }
 }
