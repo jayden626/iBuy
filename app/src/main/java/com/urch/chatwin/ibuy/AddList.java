@@ -56,7 +56,7 @@ public class AddList extends AppCompatActivity {
     public void quantityDown(View v){
         EditText quanti = (EditText) findViewById(R.id.item_quantity);
         int number = Integer.parseInt(quanti.getText().toString());
-        if(number > 0) {
+        if(number > 1) {
             number--;
         }
         quanti.setText(String.valueOf(number));

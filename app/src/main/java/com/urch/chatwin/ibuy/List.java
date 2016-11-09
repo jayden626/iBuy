@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -30,9 +32,20 @@ public class List extends AppCompatActivity {
         //db.addUser("User#" + db.getUsersCount());
         //end
 
-        itemArrayAdapter = new ArrayAdapter<Item>(this, android.R.layout.simple_list_item_1, items);
+        itemArrayAdapter = new ListAdapter(this, android.R.layout.simple_list_item_1, items);
         ListView lv = (ListView) findViewById(R.id.listview);
         lv.setAdapter(itemArrayAdapter);
+
+        CheckBox c = (CheckBox) findViewById(R.id.list_item_checked);
+        c.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()
+        {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked){
+                if(isChecked) {
+                    //db.deleteItem();
+                }
+            }
+        });
     }
 
     public void addItem(View view) {

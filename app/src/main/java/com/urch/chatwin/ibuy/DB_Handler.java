@@ -70,7 +70,7 @@ public class DB_Handler extends SQLiteOpenHelper {
         values.put(KEY_NAME, item.getName());
         values.put(KEY_CATEGORY, item.getCategory());
         values.put(KEY_LOCATION, item.getLocation());
-        values.put(KEY_COST, item.getCost());
+        values.put(KEY_COST, item.getCost()*100);
         values.put(KEY_QUANTITY, item.getQuantity());
         values.put(KEY_ENTERED, item.getEntered());
         values.put(KEY_DUE, item.getDue());
@@ -103,7 +103,7 @@ public class DB_Handler extends SQLiteOpenHelper {
             cursor.moveToFirst();
 
         Item item = new Item(Integer.parseInt(cursor.getString(0)), cursor.getString(1),
-                cursor.getString(2), cursor.getString(3), Double.parseDouble(cursor.getString(4)),
+                cursor.getString(2), cursor.getString(3), Double.parseDouble(cursor.getString(4))/100,
                 Integer.parseInt(cursor.getString(5)), Long.parseLong(cursor.getString(6)),
                 Long.parseLong(cursor.getString(7)), Boolean.parseBoolean(cursor.getString(8)), Integer.parseInt(cursor.getString(9)));
         cursor.close();
@@ -122,7 +122,7 @@ public class DB_Handler extends SQLiteOpenHelper {
         if (cursor.moveToFirst()) {
             do {
                 Item item = new Item(Integer.parseInt(cursor.getString(0)), cursor.getString(1),
-                        cursor.getString(2), cursor.getString(3), Double.parseDouble(cursor.getString(4)),
+                        cursor.getString(2), cursor.getString(3), Double.parseDouble(cursor.getString(4))/100,
                         Integer.parseInt(cursor.getString(5)), Long.parseLong(cursor.getString(6)),
                         Long.parseLong(cursor.getString(7)), Boolean.parseBoolean(cursor.getString(8)), Integer.parseInt(cursor.getString(9)));
 // Adding contact to list

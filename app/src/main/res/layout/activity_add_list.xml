@@ -45,7 +45,7 @@
                     android:id="@+id/item_cost"
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
-                    android:inputType="number"
+                    android:inputType="numberDecimal"
                     android:layout_weight="50"
                     android:hint="@string/item_cost" />
 
@@ -65,7 +65,7 @@
                     android:textAlignment="center"
                     android:layout_weight="8"
                     android:inputType="number"
-                    android:text="0"/>
+                    android:text="1"/>
 
                 <Button
                     android:id="@+id/quantity_up"
