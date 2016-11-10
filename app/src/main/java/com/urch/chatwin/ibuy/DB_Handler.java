@@ -112,6 +112,21 @@ public class DB_Handler extends SQLiteOpenHelper {
         cursor.close();
         return item;
     }
+
+    public User getUser(int id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(TABLE_USERS, new String[]{KEY_ID,
+                        KEY_NAME}, KEY_ID + "=?",
+                new String[]{String.valueOf(id)}, null, null, null, null);
+        if (cursor != null)
+            cursor.moveToFirst();
+
+        User user = new User(Integer.parseInt(cursor.getString(0)), cursor.getString(1));
+        cursor.close();
+        return user;
+    }
+
     // Getting All Shops
     public ArrayList<Item> getAllItems() {
         ArrayList<Item> itemList = new ArrayList<Item>();

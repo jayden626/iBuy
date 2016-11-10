@@ -13,6 +13,7 @@ import android.support.v7.view.menu.ExpandedMenuView;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -42,6 +43,10 @@ public class AddList extends AppCompatActivity {
             int id = extras.getInt("id");
             editItem = db.getItem(id);
             setTexts(editItem);
+            TextView title = (TextView) findViewById(R.id.addTitle);
+            title.setText("Edit An Item");
+            Button submit = (Button) findViewById(R.id.submit);
+            submit.setText("Edit Item");
         }
 
         userList = db.getAllUsers();
@@ -79,7 +84,7 @@ public class AddList extends AppCompatActivity {
         Spinner categoryField =(Spinner) findViewById(R.id.category);
         Spinner locationField =(Spinner) findViewById(R.id.location);
         Spinner userField = (Spinner) findViewById(R.id.users);
-        User u = (User) userField.getSelectedItem();
+        //User u = (User) userField.getSelectedItem();
 
         TextView dueField = (TextView) findViewById(R.id.chosen_date);
         ToggleButton common = (ToggleButton) findViewById(R.id.favourite);
@@ -88,9 +93,20 @@ public class AddList extends AppCompatActivity {
         quantityField.setText(String.valueOf(item.getQuantity()));
         costField.setText(String.valueOf(item.getCost()));
 
-        //set cat
-        //set location
-        //set user
+        ArrayAdapter<String> catAdapter = (ArrayAdapter) categoryField.getAdapter();
+        ArrayAdapter<String> locAdapter = (ArrayAdapter) locationField.getAdapter();
+        ArrayAdapter<User> userAdapter = (ArrayAdapter) userField.getAdapter();
+
+        categoryField.setSelection(catAdapter.getPosition(item.getCategory()));
+        locationField.setSelection(locAdapter.getPosition(item.getLocation()));
+
+        //User u = db.getUser(item.getuID());
+       // if(u != null)
+       //     userField.setSelection(userAdapter.getPosition(u));
+
+        //TODO: Change user spinner to String of names, with each value having a tag or somehow referencing the user id
+        //Because it cannot compare the users. needs to compare their ID
+
 
         Calendar cal = Calendar.getInstance();
         cal.setTimeInMillis(item.getDue());
