@@ -33,4 +33,3 @@ public class UserCreate extends Activity {
         startActivity(intent);
     }
 }
-}

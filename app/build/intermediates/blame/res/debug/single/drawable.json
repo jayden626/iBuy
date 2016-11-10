@@ -20,12 +20,12 @@
         "source": "C:\\Users\\Charles Chatwin\\AndroidStudioProjects\\iBuy\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\drawable\\abc_btn_radio_material.xml"
     },
     {
-        "merged": "C:\\Users\\Charles Chatwin\\AndroidStudioProjects\\iBuy\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_item_background_holo_dark.xml",
-        "source": "C:\\Users\\Charles Chatwin\\AndroidStudioProjects\\iBuy\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\drawable\\abc_item_background_holo_dark.xml"
-    },
-    {
         "merged": "C:\\Users\\Charles Chatwin\\AndroidStudioProjects\\iBuy\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\navigation_empty_icon.xml",
         "source": "C:\\Users\\Charles Chatwin\\AndroidStudioProjects\\iBuy\\app\\build\\intermediates\\exploded-aar\\com.android.support\\design\\24.2.1\\res\\drawable\\navigation_empty_icon.xml"
+    },
+    {
+        "merged": "C:\\Users\\Charles Chatwin\\AndroidStudioProjects\\iBuy\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_item_background_holo_dark.xml",
+        "source": "C:\\Users\\Charles Chatwin\\AndroidStudioProjects\\iBuy\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\drawable\\abc_item_background_holo_dark.xml"
     },
     {
         "merged": "C:\\Users\\Charles Chatwin\\AndroidStudioProjects\\iBuy\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_edit_text_material.xml",
