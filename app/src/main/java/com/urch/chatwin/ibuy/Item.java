@@ -19,6 +19,7 @@ public class Item implements Serializable {
     private Calendar entered;
     private Calendar due;
     private boolean isCommon;
+    //private boolean isPurchased;
     private int uID;
 
     public Item(int iID, String iName, String iCategory, String iLocation, double iCost, int iQuant, long iEnt, long iDue, boolean icom, int iUID){
@@ -33,6 +34,7 @@ public class Item implements Serializable {
         due = Calendar.getInstance();
         due.setTimeInMillis(iDue);
         isCommon = icom;
+        //isPurchased = iPur;
         uID = iUID;
     }
 
@@ -71,6 +73,10 @@ public class Item implements Serializable {
     public void setCommon(boolean common) {
         isCommon = common;
     }
+
+   /* public void setPurchased(boolean purchased) {
+        isPurchased = purchased;
+    }*/
 
     public void setuID(int uID) {
         this.uID = uID;
@@ -112,12 +118,16 @@ public class Item implements Serializable {
         return isCommon;
     }
 
+    /*public boolean isPurchased() {
+        return isPurchased;
+    }*/
+
     public int getuID() {
         return uID;
     }
 
     public String toString(){
         DateFormat formatter= SimpleDateFormat.getDateInstance();
-        return "name: "+name+" quan: " + quantity + " cost: "+cost+" category: "+category+" location: "+location+" due: "+ formatter.format(due.getTime()) + " entered: " + formatter.format(entered.getTime()) + " common: " + String.valueOf(isCommon) + " user: " + uID;
+        return "name: "+name+" quan: " + quantity + " cost: "+cost+" category: "+category+" location: "+location+" due: "+ formatter.format(due.getTime()) + " entered: " + formatter.format(entered.getTime()) + " common: " + String.valueOf(isCommon) +" user: " + uID;
     }
 }

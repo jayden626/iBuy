@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -25,6 +26,7 @@ public class List extends AppCompatActivity {
 
         getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.custom_title);
         db = new DB_Handler(this.getApplicationContext());
+       // db.onUpgrade(db.getWritableDatabase(), 1, 1);
         items = db.getAllItems();
 
 
@@ -32,24 +34,23 @@ public class List extends AppCompatActivity {
         //db.addUser("User#" + db.getUsersCount());
         //end
 
+
         itemArrayAdapter = new ListAdapter(this, android.R.layout.simple_list_item_1, items);
         ListView lv = (ListView) findViewById(R.id.listview);
         lv.setAdapter(itemArrayAdapter);
-
-        CheckBox c = (CheckBox) findViewById(R.id.list_item_checked);
-        c.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()
-        {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked){
-                if(isChecked) {
-                    //db.deleteItem();
-                }
-            }
-        });
     }
 
     public void addItem(View view) {
         Intent intent = new Intent(this, AddList.class);
         startActivity(intent);
+    }
+
+    @Override
+    public void onBackPressed()
+    {
+        super.onBackPressed();
+        startActivity(new Intent(this, MainMenu.class));
+        finish();
+
     }
 }
