@@ -17,10 +17,21 @@
         android:text="Shopping List"
         android:textSize="30sp"/>
 
+    <Button
+        android:id="@+id/add_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:text="@string/add_to_list"
+        android:onClick="addItem"/>
+
     <ListView
         android:id="@+id/listview"
         android:scrollbars="vertical"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_above="@id/add_item"
         android:layout_below="@id/header"/>
+
+
 </RelativeLayout>

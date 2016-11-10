@@ -15,8 +15,6 @@ public class userInfo extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
-        //requestWindowFeature(Window.FEATURE_NO_TITLE);
 
         setContentView(R.layout.activity_user_info);
 
@@ -35,7 +33,7 @@ public class userInfo extends Activity {
     }
 
     public void logOut(View view) {
-        Intent intent = new Intent(this, LoginActivity.class);
+        Intent intent = new Intent(this, MainMenu.class);//LoginActivity.class);
         startActivity(intent);
     }
     /*

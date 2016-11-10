@@ -10,7 +10,7 @@ import android.view.Window;
 /**
  * Created by Charles Chatwin on 11/7/2016.
  */
-public class UserCreate extends Activity {
+public class UserCreate extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,7 +29,7 @@ public class UserCreate extends Activity {
     }
 
     public void backToLogin(View view) {
-        Intent intent = new Intent(this, LoginActivity.class);
+        Intent intent = new Intent(this, MainMenu.class);//LoginActivity.class);
         startActivity(intent);
     }
 }
