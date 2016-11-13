@@ -26,6 +26,7 @@ public class DB_Handler extends SQLiteOpenHelper {
     private static final String KEY_DUE = "due";
     private static final String KEY_COMMON = "common";
     private static final String KEY_UID = "uID";
+    private static final String KEY_PURCHASED = "purchased";
 
     private static final String TABLE_USERS = "USERS";
 
@@ -46,13 +47,14 @@ public class DB_Handler extends SQLiteOpenHelper {
         + KEY_DUE + " INTEGER,"
         + KEY_COMMON + " INTEGER,"
         + KEY_UID + " INTEGER,"
+        + KEY_PURCHASED + " INTEGER,"
         + "FOREIGN KEY("+KEY_UID+") REFERENCES "+TABLE_USERS+"("+KEY_ID+")" + ")";
 
 
         String CREATE_USER_TABLE = "CREATE TABLE " + TABLE_USERS+ "("
         + KEY_ID + " INTEGER PRIMARY KEY,"
         + KEY_NAME + " TEXT" + ")";
-        db.execSQL(CREATE_USER_TABLE);
+        //db.execSQL(CREATE_USER_TABLE);
         db.execSQL(CREATE_ITEMS_TABLE);
     }
     @Override
@@ -62,7 +64,7 @@ public class DB_Handler extends SQLiteOpenHelper {
 // Creating tables again
         onCreate(db);
     }
-    // Adding new shop
+    // Adding new Item
     public void addItem(Item item) {
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -76,6 +78,7 @@ public class DB_Handler extends SQLiteOpenHelper {
         values.put(KEY_DUE, item.getDue());
         values.put(KEY_COMMON, item.isCommon());
         values.put(KEY_UID, item.getuID());
+        values.put(KEY_PURCHASED, 0);
 
 // Inserting Row
         db.insert(TABLE_ITEMS, null, values);
@@ -109,11 +112,26 @@ public class DB_Handler extends SQLiteOpenHelper {
         cursor.close();
         return item;
     }
+
+    public User getUser(int id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(TABLE_USERS, new String[]{KEY_ID,
+                        KEY_NAME}, KEY_ID + "=?",
+                new String[]{String.valueOf(id)}, null, null, null, null);
+        if (cursor != null)
+            cursor.moveToFirst();
+
+        User user = new User(Integer.parseInt(cursor.getString(0)), cursor.getString(1));
+        cursor.close();
+        return user;
+    }
+
     // Getting All Shops
     public ArrayList<Item> getAllItems() {
         ArrayList<Item> itemList = new ArrayList<Item>();
 // Select All Query
-        String selectQuery = "SELECT * FROM " + TABLE_ITEMS;
+        String selectQuery = "SELECT * FROM " + TABLE_ITEMS + " WHERE " + KEY_PURCHASED + " = 0";
 
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
@@ -187,7 +205,7 @@ public class DB_Handler extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(KEY_NAME, item.getName());
         values.put(KEY_LOCATION, item.getLocation());
-        values.put(KEY_COST, item.getCost());
+        values.put(KEY_COST, item.getCost()*100);
         values.put(KEY_QUANTITY, item.getQuantity());
         values.put(KEY_ENTERED, item.getEntered());
         values.put(KEY_DUE, item.getDue());
@@ -197,6 +215,17 @@ public class DB_Handler extends SQLiteOpenHelper {
 // updating row
         return db.update(TABLE_ITEMS, values, KEY_ID + " = ?",
         new String[]{String.valueOf(item.getId())});
+    }
+
+    public int purchaseItem(Item item) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(KEY_PURCHASED, 1);
+
+// updating row
+        return db.update(TABLE_ITEMS, values, KEY_ID + " = ?",
+                new String[]{String.valueOf(item.getId())});
     }
 
     // Deleting a shop

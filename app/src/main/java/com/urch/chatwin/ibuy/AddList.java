@@ -13,6 +13,7 @@ import android.support.v7.view.menu.ExpandedMenuView;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -27,6 +28,7 @@ public class AddList extends AppCompatActivity {
     TextView date;
     ArrayList<User> userList;
     DB_Handler db;
+    Item editItem;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,8 +37,20 @@ public class AddList extends AppCompatActivity {
 
         db = new DB_Handler(this.getApplicationContext());
 
-        Spinner users = (Spinner) findViewById(R.id.users);
+        Intent i = getIntent();
+        Bundle extras = i.getExtras();
+        if(extras != null){
+            int id = extras.getInt("id");
+            editItem = db.getItem(id);
+            setTexts(editItem);
+            TextView title = (TextView) findViewById(R.id.addTitle);
+            title.setText("Edit An Item");
+            Button submit = (Button) findViewById(R.id.submit);
+            submit.setText("Edit Item");
+        }
+
         userList = db.getAllUsers();
+        Spinner users = (Spinner) findViewById(R.id.users);
         ArrayAdapter<User> spinnerArrayAdapter = new ArrayAdapter<User>(this, android.R.layout.simple_spinner_dropdown_item, userList);
         users.setAdapter(spinnerArrayAdapter);
     }
@@ -62,8 +76,46 @@ public class AddList extends AppCompatActivity {
         quanti.setText(String.valueOf(number));
     }
 
+    public void setTexts(Item item){
+        EditText nameField = (EditText) findViewById(R.id.item_name);
+        EditText quantityField = (EditText) findViewById(R.id.item_quantity);
+        EditText costField = (EditText) findViewById(R.id.item_cost);
+
+        Spinner categoryField =(Spinner) findViewById(R.id.category);
+        Spinner locationField =(Spinner) findViewById(R.id.location);
+        Spinner userField = (Spinner) findViewById(R.id.users);
+        //User u = (User) userField.getSelectedItem();
+
+        TextView dueField = (TextView) findViewById(R.id.chosen_date);
+        ToggleButton common = (ToggleButton) findViewById(R.id.favourite);
+
+        nameField.setText(item.getName());
+        quantityField.setText(String.valueOf(item.getQuantity()));
+        costField.setText(String.valueOf(item.getCost()));
+
+        ArrayAdapter<String> catAdapter = (ArrayAdapter) categoryField.getAdapter();
+        ArrayAdapter<String> locAdapter = (ArrayAdapter) locationField.getAdapter();
+        ArrayAdapter<User> userAdapter = (ArrayAdapter) userField.getAdapter();
+
+        categoryField.setSelection(catAdapter.getPosition(item.getCategory()));
+        locationField.setSelection(locAdapter.getPosition(item.getLocation()));
+
+        //User u = db.getUser(item.getuID());
+       // if(u != null)
+       //     userField.setSelection(userAdapter.getPosition(u));
+
+        //TODO: Change user spinner to String of names, with each value having a tag or somehow referencing the user id
+        //Because it cannot compare the users. needs to compare their ID
+
+
+        Calendar cal = Calendar.getInstance();
+        cal.setTimeInMillis(item.getDue());
+        dueField.setText(cal.get(Calendar.MONTH)+"/"+cal.get(Calendar.DAY_OF_MONTH) + "/" + cal.get(Calendar.YEAR));
+
+        common.setChecked(item.isCommon());
+    }
+
     public void addItem(View v){
-        //TODO: Implement storage in database
         EditText nameField = (EditText) findViewById(R.id.item_name);
         EditText quantityField = (EditText) findViewById(R.id.item_quantity);
         EditText costField = (EditText) findViewById(R.id.item_cost);
@@ -117,10 +169,18 @@ public class AddList extends AppCompatActivity {
         }
         else{
             dueDate.set(Integer.parseInt(dates[2]), Integer.parseInt(dates[0]), Integer.parseInt(dates[1]));
-            Item item = new Item(-1, name, category, location, Double.parseDouble(cost), Integer.parseInt(quantity), currentDate.getTimeInMillis(), dueDate.getTimeInMillis(), common.isChecked(), u.getId());
-            db.addItem(item);
-            Toast toast = Toast.makeText(this.getApplicationContext(), "Made new item", Toast.LENGTH_SHORT);
-            toast.show();
+            if(editItem != null) {
+                Item item = new Item(editItem.getId(), name, category, location, Double.parseDouble(cost), Integer.parseInt(quantity), currentDate.getTimeInMillis(), dueDate.getTimeInMillis(), common.isChecked(), u.getId());
+                db.updateItem(item);
+                Toast toast = Toast.makeText(this.getApplicationContext(), "Updated Item", Toast.LENGTH_SHORT);
+                toast.show();
+            }
+            else{
+                Item item = new Item(-1, name, category, location, Double.parseDouble(cost), Integer.parseInt(quantity), currentDate.getTimeInMillis(), dueDate.getTimeInMillis(), common.isChecked(), u.getId());
+                db.addItem(item);
+                Toast toast = Toast.makeText(this.getApplicationContext(), "Added Item", Toast.LENGTH_SHORT);
+                toast.show();
+            }
 
             Intent intent = new Intent(this, List.class);
             startActivity(intent);
