@@ -24,9 +24,7 @@
         <activity android:name=".AddList" />
         <activity android:name=".CommonList" />
         <activity android:name=".UserCreate" />
-        <activity android:name=".UserMenu" />
-        <activity android:name=".UserLogin" />
-        <activity android:name=".InfoMenu" />
+        <activity android:name=".userInfo" />
         <activity
             android:name=".LoginActivity"
             android:label="@string/title_activity_login" />
