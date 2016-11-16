@@ -24,4 +24,14 @@ public class MainMenu extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void createNewUser(View view) {
+        Intent intent = new Intent(this, UserCreate.class);
+        startActivity(intent);
+    }
+
+    public void userLoginP(View view) {
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
+    }
+
 }

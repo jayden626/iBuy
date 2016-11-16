@@ -54,7 +54,7 @@ public class UserCreate extends AppCompatActivity {
     }
 
     public void backToLogin(View view) {
-        Intent intent = new Intent(this, LoginActivity.class);//LoginActivity.class);
+        Intent intent = new Intent(this, MainMenu.class);//LoginActivity.class);
         startActivity(intent);
     }
 }
