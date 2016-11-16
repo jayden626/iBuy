@@ -8,18 +8,19 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@drawable/background"
+    android:tileMode="repeat"
     tools:context="com.urch.chatwin.ibuy.MainMenu">
 
-    <TextView
+    <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/app_name"
-        android:textSize="50sp"
-        android:textColor="#000000"
+        android:contentDescription="@string/app_name"
         android:textAlignment="center"
         android:id="@+id/title"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
+        android:src="@drawable/ibuy"
         android:layout_marginTop="50dp"/>
 
 

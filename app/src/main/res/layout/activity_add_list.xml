@@ -3,7 +3,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@drawable/background"
+    android:tileMode="repeat">
 
     <TextView
         android:id="@+id/addTitle"
@@ -55,6 +57,7 @@
                     android:layout_height="50dp"
                     android:layout_weight="1"
                     android:text="-"
+                    android:background="@drawable/mybutton"
                     android:onClick="quantityDown"/>
 
                 <EditText
@@ -72,6 +75,8 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_weight="1"
+                    android:background="@drawable/mybutton"
+
                     android:text="+"
                     android:onClick="quantityUp"/>
 
@@ -133,6 +138,7 @@
                     android:id="@+id/date_picker"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:background="@drawable/mybutton"
                     android:text="@string/due"
                     android:layout_weight="6"
                     android:onClick="showDatePickerDialog"/>
@@ -157,7 +163,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="63dp"
                 android:textOn="Common item"
-                android:textOff="Non-common"
+                android:textOff="Non-common "
                 android:layout_margin="5dp"
                 android:layout_weight="0"/>
 
@@ -166,6 +172,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="63dp"
                 android:text="Add item"
+                android:background="@drawable/mybutton"
+                android:layout_margin="5dp"
                 android:layout_weight="1"
                 android:onClick="addItem"/>
         </LinearLayout>
