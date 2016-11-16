@@ -27,7 +27,7 @@
         android:layout_height="60dp"
         android:text="@string/alert_off"
         android:id="@+id/alert"
-        android:background="#EEEEEE"
+        android:background="@drawable/mybutton"
         android:onClick="@string/alert_on"
         android:layout_marginTop="56dp"
         android:layout_below="@+id/title"
@@ -36,20 +36,20 @@
     <Button
         android:layout_width="250dp"
         android:layout_height="50dp"
-        android:text="@string/add_to_list"
+        android:text="Shopping List"
         android:id="@+id/add_to_list"
-        android:background="#EEEEEE"
+        android:background="@drawable/mybutton"
         android:layout_below="@+id/alert"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="15dp"
-        android:onClick="addItem" />
+        android:onClick="showList" />
 
     <Button
         android:layout_width="250dp"
         android:layout_height="50dp"
         android:text="@string/common"
         android:id="@+id/view_common"
-        android:background="#EEEEEE"
+        android:background="@drawable/mybutton"
         android:layout_below="@+id/add_to_list"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
@@ -60,7 +60,7 @@
         android:layout_height="50dp"
         android:text="@string/add_route"
         android:id="@+id/add_route"
-        android:background="#EEEEEE"
+        android:background="@drawable/mybutton"
         android:layout_below="@+id/view_common"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"/>
@@ -71,7 +71,7 @@
         android:layout_height="50dp"
         android:text="@string/user_logout"
         android:id="@+id/user_logout"
-        android:background="#EEEEEE"
+        android:background="@drawable/mybutton"
         android:layout_below="@+id/add_route"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
@@ -80,9 +80,9 @@
     <Button
         android:layout_width="75dp"
         android:layout_height="60dp"
-        android:text="Create a new Alert"
+        android:text="Create Alert"
         android:id="@+id/create_alert"
-        android:background="#EEEEEE"
+        android:background="@drawable/mybutton"
         android:onClick="@string/alert_on"
         android:layout_alignTop="@+id/alert"
         android:layout_centerHorizontal="true" />
@@ -90,10 +90,10 @@
     <Button
         android:layout_width="75dp"
         android:layout_height="60dp"
-        android:text="Shopping Checklist"
+        android:text="Add Item"
         android:id="@+id/button"
-        android:background="#EEEEEE"
-        android:onClick="showList"
+        android:background="@drawable/mybutton"
+        android:onClick="addItem"
         android:layout_alignTop="@+id/create_alert"
         android:layout_alignEnd="@+id/add_to_list" />
 

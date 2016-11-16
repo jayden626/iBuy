@@ -28,7 +28,7 @@
         android:layout_height="75dp"
         android:text="@string/list"
         android:id="@+id/list"
-        android:background="#EEEEEE"
+        android:background="@drawable/mybutton"
         android:onClick="showList"
         android:layout_below="@+id/title"
         android:layout_centerHorizontal="true"
@@ -39,7 +39,7 @@
         android:layout_height="75dp"
         android:text="@string/common"
         android:id="@+id/common"
-        android:background="#EEEEEE"
+        android:background="@drawable/mybutton"
         android:layout_below="@+id/list"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"/>
@@ -50,7 +50,7 @@
         android:layout_height="75dp"
         android:text="@string/users"
         android:id="@+id/users"
-        android:background="#EEEEEE"
+        android:background="@drawable/mybutton"
         android:layout_below="@+id/common"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"/>

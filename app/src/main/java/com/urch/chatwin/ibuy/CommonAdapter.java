@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,7 +25,7 @@ import java.util.ArrayList;
 
 public class CommonAdapter extends ArrayAdapter<Item> {
 
-    private ArrayList<Button> buttons;
+    private ArrayList<ImageButton> buttons;
     private DB_Handler db;
 
     public CommonAdapter(Context context, int textViewResourceId) {
@@ -49,7 +50,7 @@ public class CommonAdapter extends ArrayAdapter<Item> {
         }
 
         final Item p = getItem(position);
-        Button c = (Button) v.findViewById(R.id.common_delete);
+        ImageButton c = (ImageButton) v.findViewById(R.id.common_delete);
         c.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

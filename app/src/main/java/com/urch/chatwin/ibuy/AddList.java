@@ -149,10 +149,6 @@ public class AddList extends AppCompatActivity {
         Calendar currentDate = Calendar.getInstance();
         Calendar dueDate = Calendar.getInstance();
 
-
-        Toast toasts = Toast.makeText(this.getApplicationContext(), "name: "+name+" quan: " + quantity + " cost: "+cost+" category: "+category+" location: "+location+" due: "+due, Toast.LENGTH_SHORT);
-        toasts.show();
-
         if(TextUtils.isEmpty(name)){
             Toast toast = Toast.makeText(this.getApplicationContext(), "Please enter a name", Toast.LENGTH_SHORT);
             toast.show();
