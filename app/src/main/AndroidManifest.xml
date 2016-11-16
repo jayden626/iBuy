@@ -20,7 +20,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainMenu"/>
+        <activity android:name=".MainMenu" />
         <activity android:name=".List" />
         <activity android:name=".AddList" />
         <activity android:name=".CommonList" />
