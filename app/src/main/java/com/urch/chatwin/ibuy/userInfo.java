@@ -27,6 +27,11 @@ public class userInfo extends Activity {
         startActivity(intent);
     }
 
+    public void viewCommon(View view) {
+        Intent intent = new Intent(this, CommonList.class);
+        startActivity(intent);
+    }
+
     public void addItem(View view) {
         Intent intent = new Intent(this, AddList.class);
         startActivity(intent);

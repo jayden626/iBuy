@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.TextView;
@@ -21,18 +22,18 @@ import java.util.ArrayList;
  * Created by Jayden on 9/11/2016.
  */
 
-public class ListAdapter extends ArrayAdapter<Item> {
+public class CommonAdapter extends ArrayAdapter<Item> {
 
-    private ArrayList<CheckBox> checkBoxes;
+    private ArrayList<Button> buttons;
     private DB_Handler db;
 
-    public ListAdapter(Context context, int textViewResourceId) {
+    public CommonAdapter(Context context, int textViewResourceId) {
         super(context, textViewResourceId);
     }
 
-    public ListAdapter(Context context, int resource, ArrayList<Item> items) {
+    public CommonAdapter(Context context, int resource, ArrayList<Item> items) {
         super(context, resource, items);
-        checkBoxes = new ArrayList<>();
+        buttons = new ArrayList<>();
         db = new DB_Handler(context);
     }
 
@@ -44,30 +45,28 @@ public class ListAdapter extends ArrayAdapter<Item> {
         if (v == null) {
             LayoutInflater vi;
             vi = LayoutInflater.from(getContext());
-            v = vi.inflate(R.layout.list_layout, null);
+            v = vi.inflate(R.layout.common_layout, null);
         }
 
         final Item p = getItem(position);
-        CheckBox c = (CheckBox) v.findViewById(R.id.list_item_checked);
-        c.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        Button c = (Button) v.findViewById(R.id.common_delete);
+        c.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked){
-                if(isChecked) {
-                    db.purchaseItem(p);
-                    remove(p);
-                    Toast toast = Toast.makeText(ListAdapter.super.getContext(), "Item purchased!", Toast.LENGTH_SHORT);
-                    toast.show();
-                    notifyDataSetChanged();
-                }
+            public void onClick(View v) {
+                db.nonCommon(p);
+                remove(p);
+                Toast toast = Toast.makeText(CommonAdapter.super.getContext(), "Item no longer common!", Toast.LENGTH_SHORT);
+                toast.show();
+                notifyDataSetChanged();
             }
         });
-        checkBoxes.add(c);
+        buttons.add(c);
 
 
 
         if (p != null) {
-            TextView title = (TextView) v.findViewById(R.id.list_item_name);
-            TextView description = (TextView) v.findViewById(R.id.list_item_information);
+            TextView title = (TextView) v.findViewById(R.id.common_item_name);
+            TextView description = (TextView) v.findViewById(R.id.common_item_information);
 
             if (title != null) {
                 title.setText(p.getName());
@@ -91,6 +90,7 @@ public class ListAdapter extends ArrayAdapter<Item> {
                         //USE TAGES AND START INTENTS
                         Intent intent = new Intent(getContext(), AddList.class);
                         intent.putExtra("id", p.getId());
+                        intent.putExtra("common", true);
                         getContext().startActivity(intent);
                     }
                 });

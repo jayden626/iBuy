@@ -5,6 +5,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,6 +31,7 @@ public class DB_Handler extends SQLiteOpenHelper {
     private static final String KEY_PURCHASED = "purchased";
 
     private static final String TABLE_USERS = "USERS";
+    private static final String TABLE_COMMON = "COMMON";
 
 
     public DB_Handler(Context context) {
@@ -50,17 +53,25 @@ public class DB_Handler extends SQLiteOpenHelper {
         + KEY_PURCHASED + " INTEGER,"
         + "FOREIGN KEY("+KEY_UID+") REFERENCES "+TABLE_USERS+"("+KEY_ID+")" + ")";
 
+        /*String CREATE_COMMON_TABLE = "CREATE TABLE " + TABLE_COMMON + "("
+                + KEY_ID + " INTEGER PRIMARY KEY,"
+                + KEY_NAME + " TEXT,"
+                + KEY_CATEGORY + " TEXT,"
+                + KEY_LOCATION + " TEXT,"
+                + KEY_COST + " INTEGER,"
+                + KEY_COMMON + " INTEGER" + ")";*/
 
         String CREATE_USER_TABLE = "CREATE TABLE " + TABLE_USERS+ "("
         + KEY_ID + " INTEGER PRIMARY KEY,"
         + KEY_NAME + " TEXT" + ")";
-        //db.execSQL(CREATE_USER_TABLE);
+        db.execSQL(CREATE_USER_TABLE);
         db.execSQL(CREATE_ITEMS_TABLE);
     }
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 // Drop older table if existed
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_ITEMS);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_USERS);
 // Creating tables again
         onCreate(db);
     }
@@ -105,11 +116,13 @@ public class DB_Handler extends SQLiteOpenHelper {
         if (cursor != null)
             cursor.moveToFirst();
 
+        boolean com = cursor.getString(8).equalsIgnoreCase("1");
         Item item = new Item(Integer.parseInt(cursor.getString(0)), cursor.getString(1),
                 cursor.getString(2), cursor.getString(3), Double.parseDouble(cursor.getString(4))/100,
                 Integer.parseInt(cursor.getString(5)), Long.parseLong(cursor.getString(6)),
-                Long.parseLong(cursor.getString(7)), Boolean.parseBoolean(cursor.getString(8)), Integer.parseInt(cursor.getString(9)));
+                Long.parseLong(cursor.getString(7)), com, Integer.parseInt(cursor.getString(9)));
         cursor.close();
+        db.close();
         return item;
     }
 
@@ -124,10 +137,11 @@ public class DB_Handler extends SQLiteOpenHelper {
 
         User user = new User(Integer.parseInt(cursor.getString(0)), cursor.getString(1));
         cursor.close();
+        db.close();
         return user;
     }
 
-    // Getting All Shops
+    // Getting All Items
     public ArrayList<Item> getAllItems() {
         ArrayList<Item> itemList = new ArrayList<Item>();
 // Select All Query
@@ -139,16 +153,48 @@ public class DB_Handler extends SQLiteOpenHelper {
 // looping through all rows and adding to list
         if (cursor.moveToFirst()) {
             do {
+                boolean com = cursor.getString(8).equalsIgnoreCase("1");
+
                 Item item = new Item(Integer.parseInt(cursor.getString(0)), cursor.getString(1),
                         cursor.getString(2), cursor.getString(3), Double.parseDouble(cursor.getString(4))/100,
                         Integer.parseInt(cursor.getString(5)), Long.parseLong(cursor.getString(6)),
-                        Long.parseLong(cursor.getString(7)), Boolean.parseBoolean(cursor.getString(8)), Integer.parseInt(cursor.getString(9)));
+                        Long.parseLong(cursor.getString(7)), com, Integer.parseInt(cursor.getString(9)));
 // Adding contact to list
                 itemList.add(item);
             } while (cursor.moveToNext());
         }
 
         cursor.close();
+        db.close();
+// return contact list
+        return itemList;
+    }
+
+    // Getting All Items
+    public ArrayList<Item> getAllCommon() {
+        ArrayList<Item> itemList = new ArrayList<Item>();
+// Select All Query
+        String selectQuery = "SELECT * FROM " + TABLE_ITEMS + " WHERE " + KEY_COMMON + " = 1";
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+// looping through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+                boolean com = cursor.getString(8).equalsIgnoreCase("1");
+
+                Item item = new Item(Integer.parseInt(cursor.getString(0)), cursor.getString(1),
+                        cursor.getString(2), cursor.getString(3), Double.parseDouble(cursor.getString(4))/100,
+                        Integer.parseInt(cursor.getString(5)), Long.parseLong(cursor.getString(6)),
+                        Long.parseLong(cursor.getString(7)), com, Integer.parseInt(cursor.getString(9)));
+// Adding contact to list
+                itemList.add(item);
+            } while (cursor.moveToNext());
+        }
+
+        cursor.close();
+        db.close();
 // return contact list
         return itemList;
     }
@@ -171,6 +217,7 @@ public class DB_Handler extends SQLiteOpenHelper {
         }
 
         cursor.close();
+        db.close();
 // return contact list
         return userList;
     }
@@ -182,7 +229,7 @@ public class DB_Handler extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery(countQuery, null);
         int count = cursor.getCount();
         cursor.close();
-
+        db.close();
 // return count
         return count;
     }
@@ -194,6 +241,7 @@ public class DB_Handler extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery(countQuery, null);
         int count = cursor.getCount();
         cursor.close();
+        db.close();
 
 // return count
         return count;
@@ -201,38 +249,63 @@ public class DB_Handler extends SQLiteOpenHelper {
     // Updating a shop
     public int updateItem(Item item) {
         SQLiteDatabase db = this.getWritableDatabase();
+        try {
+            ContentValues values = new ContentValues();
+            values.put(KEY_NAME, item.getName());
+            values.put(KEY_LOCATION, item.getLocation());
+            values.put(KEY_COST, item.getCost() * 100);
+            values.put(KEY_QUANTITY, item.getQuantity());
+            values.put(KEY_ENTERED, item.getEntered());
+            values.put(KEY_DUE, item.getDue());
+            values.put(KEY_COMMON, item.isCommon());
+            values.put(KEY_UID, item.getuID());
 
-        ContentValues values = new ContentValues();
-        values.put(KEY_NAME, item.getName());
-        values.put(KEY_LOCATION, item.getLocation());
-        values.put(KEY_COST, item.getCost()*100);
-        values.put(KEY_QUANTITY, item.getQuantity());
-        values.put(KEY_ENTERED, item.getEntered());
-        values.put(KEY_DUE, item.getDue());
-        values.put(KEY_COMMON, item.isCommon());
-        values.put(KEY_UID, item.getuID());
-
-// updating row
-        return db.update(TABLE_ITEMS, values, KEY_ID + " = ?",
-        new String[]{String.valueOf(item.getId())});
+            // updating row
+            return db.update(TABLE_ITEMS, values, KEY_ID + " = ?",
+                    new String[]{String.valueOf(item.getId())});
+        }finally {
+            db.close();
+        }
     }
 
-    public int purchaseItem(Item item) {
+    public void purchaseItem(Item item) {
         SQLiteDatabase db = this.getWritableDatabase();
 
-        ContentValues values = new ContentValues();
-        values.put(KEY_PURCHASED, 1);
+        try {
+            ContentValues values = new ContentValues();
+            values.put(KEY_PURCHASED, 1);
 
 // updating row
-        return db.update(TABLE_ITEMS, values, KEY_ID + " = ?",
-                new String[]{String.valueOf(item.getId())});
+            db.update(TABLE_ITEMS, values, KEY_ID + " = ?",
+                    new String[]{String.valueOf(item.getId())});
+        }finally {
+            db.close();
+        }
+    }
+
+    public void nonCommon(Item item) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        try {
+            ContentValues values = new ContentValues();
+            values.put(KEY_COMMON, 0);
+
+// updating row
+            db.update(TABLE_ITEMS, values, KEY_ID + " = ?",
+                    new String[]{String.valueOf(item.getId())});
+        }finally {
+            db.close();
+        }
     }
 
     // Deleting a shop
     public void deleteItem(Item item) {
         SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(TABLE_ITEMS, KEY_ID + " = ?",
-        new String[] { String.valueOf(item.getId()) });
-        db.close();
+        try{
+            db.delete(TABLE_ITEMS, KEY_ID + " = ?",
+                new String[] { String.valueOf(item.getId()) });
+        }finally {
+            db.close();
+        }
     }
 }

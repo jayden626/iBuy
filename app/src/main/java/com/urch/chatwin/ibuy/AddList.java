@@ -29,6 +29,7 @@ public class AddList extends AppCompatActivity {
     ArrayList<User> userList;
     DB_Handler db;
     Item editItem;
+    boolean isCommon;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,22 +38,26 @@ public class AddList extends AppCompatActivity {
 
         db = new DB_Handler(this.getApplicationContext());
 
-        Intent i = getIntent();
-        Bundle extras = i.getExtras();
-        if(extras != null){
-            int id = extras.getInt("id");
-            editItem = db.getItem(id);
-            setTexts(editItem);
-            TextView title = (TextView) findViewById(R.id.addTitle);
-            title.setText("Edit An Item");
-            Button submit = (Button) findViewById(R.id.submit);
-            submit.setText("Edit Item");
-        }
-
         userList = db.getAllUsers();
         Spinner users = (Spinner) findViewById(R.id.users);
         ArrayAdapter<User> spinnerArrayAdapter = new ArrayAdapter<User>(this, android.R.layout.simple_spinner_dropdown_item, userList);
         users.setAdapter(spinnerArrayAdapter);
+        isCommon = false;
+
+        Intent i = getIntent();
+        Bundle extras = i.getExtras();
+        if(extras != null){
+            int id = extras.getInt("id");
+            isCommon = extras.getBoolean("common", false);
+            editItem = db.getItem(id);
+            setTexts(editItem);
+            if(!isCommon) {
+                TextView title = (TextView) findViewById(R.id.addTitle);
+                title.setText("Edit An Item");
+                Button submit = (Button) findViewById(R.id.submit);
+                submit.setText("Edit Item");
+            }
+        }
     }
 
     public void showDatePickerDialog(View v) {
@@ -100,19 +105,24 @@ public class AddList extends AppCompatActivity {
         categoryField.setSelection(catAdapter.getPosition(item.getCategory()));
         locationField.setSelection(locAdapter.getPosition(item.getLocation()));
 
-        //User u = db.getUser(item.getuID());
-       // if(u != null)
-       //     userField.setSelection(userAdapter.getPosition(u));
-
-        //TODO: Change user spinner to String of names, with each value having a tag or somehow referencing the user id
-        //Because it cannot compare the users. needs to compare their ID
-
+        User u = db.getUser(item.getuID());
+        if(u != null) {
+            for (int i = 0; i < userAdapter.getCount(); i++) {
+                User a = userAdapter.getItem(i);
+                if (a != null && a.getId() == u.getId()) {
+                    userField.setSelection(i);
+                }
+            }
+        }
 
         Calendar cal = Calendar.getInstance();
         cal.setTimeInMillis(item.getDue());
         dueField.setText(cal.get(Calendar.MONTH)+"/"+cal.get(Calendar.DAY_OF_MONTH) + "/" + cal.get(Calendar.YEAR));
 
-        common.setChecked(item.isCommon());
+        if(!isCommon)
+            common.setChecked(item.isCommon());
+        else
+            common.setVisibility(View.GONE);
     }
 
     public void addItem(View v){
@@ -169,7 +179,7 @@ public class AddList extends AppCompatActivity {
         }
         else{
             dueDate.set(Integer.parseInt(dates[2]), Integer.parseInt(dates[0]), Integer.parseInt(dates[1]));
-            if(editItem != null) {
+            if(editItem != null && !isCommon) {
                 Item item = new Item(editItem.getId(), name, category, location, Double.parseDouble(cost), Integer.parseInt(quantity), currentDate.getTimeInMillis(), dueDate.getTimeInMillis(), common.isChecked(), u.getId());
                 db.updateItem(item);
                 Toast toast = Toast.makeText(this.getApplicationContext(), "Updated Item", Toast.LENGTH_SHORT);

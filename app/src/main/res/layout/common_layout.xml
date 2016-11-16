@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/common_item_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="PLACEHOLDERNAME"
+        android:textColor="#FF000000"
+        android:textSize="20sp"
+        android:clickable="true"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/common_item_name"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="13dp"
+        android:text="del"
+        android:id="@+id/common_delete"
+        android:onClick="deleteCommon"/>
+
+    <TextView
+        android:text="PLACEHOLDER INFO"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/common_delete"
+        android:id="@+id/common_item_information"
+        android:layout_alignParentStart="true"
+        android:layout_toStartOf="@+id/common_delete"
+        android:layout_alignTop="@+id/common_delete"
+        android:clickable="true"/>
+
+
+</RelativeLayout>

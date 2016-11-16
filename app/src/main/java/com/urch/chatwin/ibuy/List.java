@@ -24,14 +24,14 @@ public class List extends AppCompatActivity {
 
         setContentView(R.layout.activity_list);
 
-        getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.custom_title);
+       // getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.custom_title);
         db = new DB_Handler(this.getApplicationContext());
        // db.onUpgrade(db.getWritableDatabase(), 1, 1);
         items = db.getAllItems();
 
 
         //for testing only
-        //db.addUser("User#" + db.getUsersCount());
+        db.addUser("User#" + db.getUsersCount());
         //end
 
 
@@ -49,7 +49,7 @@ public class List extends AppCompatActivity {
     public void onBackPressed()
     {
         super.onBackPressed();
-        startActivity(new Intent(this, MainMenu.class));
+        startActivity(new Intent(this, userInfo.class));
         finish();
 
     }
