@@ -2,6 +2,7 @@ package com.urch.chatwin.ibuy;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.CountDownTimer;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,14 +51,27 @@ public class ListAdapter extends ArrayAdapter<Item> {
         final Item p = getItem(position);
         CheckBox c = (CheckBox) v.findViewById(R.id.list_item_checked);
         c.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked){
-                if(isChecked) {
+            CountDownTimer c = new CountDownTimer(5000, 1000) {
+
+                public void onTick(long millisUntilFinished) {
+                }
+
+                public void onFinish() {
                     db.purchaseItem(p);
                     remove(p);
                     Toast toast = Toast.makeText(ListAdapter.super.getContext(), "Item purchased!", Toast.LENGTH_SHORT);
                     toast.show();
                     notifyDataSetChanged();
+                }
+            };
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked){
+
+                if(isChecked) {
+                    c.start();
+                }
+                else{
+                    c.cancel();
                 }
             }
         });
