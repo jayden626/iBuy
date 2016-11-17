@@ -6,6 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -15,6 +17,9 @@ import java.util.ArrayList;
  */
 public class UserCreate extends AppCompatActivity {
 
+    User u;
+    int uID;
+    int count = 0;
     DB_Handler db;
     TextView password;
     TextView username;
@@ -24,32 +29,46 @@ public class UserCreate extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
-        //requestWindowFeature(Window.FEATURE_NO_TITLE);
 
         setContentView(R.layout.activity_user_create);
-
         getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.custom_title);
 
         //creating/assigning DB and textview's
         db = new DB_Handler(this.getApplicationContext());
-        username = (TextView) findViewById(R.id.new_user_name);
-        password = (TextView) findViewById(R.id.new_password);
-        userList = db.getAllUsers();
+        username = (EditText) findViewById(R.id.new_user_name);
+        password = (EditText) findViewById(R.id.new_password);
+        uID = -1;
+
     }
 
     public void createUser(View view) {
 
-        if (userList.contains(username.getText())) {
-            username.setText("Username Already Exists; try again!");
+        userList = db.getAllUsers();
+        View focusView;
+        uID = -1;
+
+        for(User u : userList){
+            if(u.getName().equalsIgnoreCase(username.getText().toString())){
+                uID = u.getId();
+                break;
+            }
+        }
+
+        if (uID != -1) {
+            username.setError(getString(R.string.error_username_exists));
+            focusView = username;
+            focusView.requestFocus();
         }
         else {
-            db.addUser((String)username.getText()); //TODO if addUser is made to include password: add '(String)password.getText()'
+            uID = count++;
+            u = new User(uID, username.getText().toString());
+            db.addUser(u.getName()); //TODO if addUser is made to include password: add 'password.getText().toString()'
 
-            //clearing the input to let user know it was created
-            username.setText("");
-            password.setText("");
+            //changing screen to log in to let user know it was created
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
         }
+
 
     }
 

@@ -34,7 +34,7 @@ import static java.security.AccessController.getContext;
  */
 public class LoginActivity extends AppCompatActivity {
 
-    int uID = -1;
+    int uID;
     DB_Handler db;
     ArrayList<User> userList;
     Context context;
@@ -59,6 +59,7 @@ public class LoginActivity extends AppCompatActivity {
         usernameView = (EditText) findViewById(R.id.user_name);
 
         mPasswordView = (EditText) findViewById(R.id.password);
+        uID = -1;
         //Code below allows pressing 'enter' to just quickly log in.
         /*mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
@@ -120,7 +121,8 @@ public class LoginActivity extends AppCompatActivity {
         View focusView = null;
 
         // Check for a valid password, if the user entered one.
-        if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
+        //if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
+        if (!isPasswordValid(password)) {
             mPasswordView.setError(getString(R.string.error_invalid_password));
             focusView = mPasswordView;
             cancel = true;
@@ -152,12 +154,13 @@ public class LoginActivity extends AppCompatActivity {
 
     private boolean isValid(String username) {
         //TODO: Replace this with your own logic
-        return username.length() > 3;
+        return username.length() >= 1;
     }
 
     private boolean isPasswordValid(String password) {
         //TODO: Replace this with your own logic
-        return password.length() > -1;
+        //return password.length() > -1;
+        return true;
     }
 
     /**
@@ -225,13 +228,6 @@ public class LoginActivity extends AppCompatActivity {
             if (db.getUsersCount() > 0 && userList.contains(userName)) {
 
                 //account exists, returns true (would check if password matched here if implemented)
-                for(User u : userList){
-                    if(u.getName().equalsIgnoreCase(userName)){
-                        uID = u.getId();
-                        break;
-                    }
-                }
-
 
                 return true;
             }
@@ -253,8 +249,30 @@ public class LoginActivity extends AppCompatActivity {
 
                 finish();
             } else {
-                mPasswordView.setError(getString(R.string.error_incorrect_password));
-                mPasswordView.requestFocus();
+                userList = db.getAllUsers();
+                for(User u : userList){  //check if the user exists
+                    if(u.getName().equalsIgnoreCase(userName)){
+                        uID = u.getId();
+                        break;
+                    }
+                }
+
+                //if the username existed
+                if (uID != -1) {
+                    Intent intent = new Intent(context, userInfo.class);
+                    intent.putExtra("id", uID);
+                    startActivity(intent);
+                    finish();
+                }
+
+
+                //if it gets here: then the username didnt exist
+                else {
+                    //mPasswordView.setError(getString(R.string.error_incorrect_password));
+                    //mPasswordView.requestFocus();
+                    usernameView.setError(getString(R.string.error_invalid_email));
+                    usernameView.requestFocus();
+                }
             }
         }
 

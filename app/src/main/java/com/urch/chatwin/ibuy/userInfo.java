@@ -27,7 +27,7 @@ public class userInfo extends Activity {
         Bundle extras = i.getExtras();
         if(extras != null) {
             int id = extras.getInt("id");
-            u.setId(id);
+            //u.setId(id);
             uID = id;
         }
 
@@ -57,7 +57,7 @@ public class userInfo extends Activity {
 
     public void logOut(View view) {
         uID = -1;
-        Intent intent = new Intent(this, MainMenu.class);//LoginActivity.class);
+        Intent intent = new Intent(this, MainMenu.class);
         intent.putExtra("id", uID);
         startActivity(intent);
     }
