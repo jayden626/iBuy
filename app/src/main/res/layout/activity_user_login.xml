@@ -90,12 +90,14 @@
                     android:inputType="textPassword"
                     android:ems="10"
                     android:id="@+id/password"
-                    android:imeActionLabel="@string/action_sign_in_short"
-                    android:imeOptions="actionUnspecified"
-                    android:imeActionId="@+id/login"
+
                     android:hint="@string/prompt_password"
                     android:maxLines="1"
-                    android:singleLine="true" />
+                     />
+                <!--android:imeActionLabel="@string/action_sign_in_short"
+                android:imeOptions="actionUnspecified"
+                android:singleLine="true"-->
+                <!--android:imeActionId="@+id/login"-->
 
             </android.support.design.widget.TextInputLayout>
 
@@ -112,7 +114,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
-                android:text="@string/add_users"
+                android:text="@android:string/no"
                 android:id="@+id/btn_back"
                 android:background="@drawable/mybutton"
                 android:textStyle="bold" />

@@ -59,7 +59,8 @@ public class LoginActivity extends AppCompatActivity {
         usernameView = (EditText) findViewById(R.id.user_name);
 
         mPasswordView = (EditText) findViewById(R.id.password);
-        mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+        //Code below allows pressing 'enter' to just quickly log in.
+        /*mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
                 if (id == R.id.login || id == EditorInfo.IME_NULL) {
                     attemptLogin();
@@ -67,8 +68,15 @@ public class LoginActivity extends AppCompatActivity {
                 }
                 return false;
             }
-        });
+        });*/
 
+        Button cancelBTN = (Button) findViewById(R.id.btn_back);
+        cancelBTN.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                goBack();
+            }
+        });
         Button signInButton = (Button) findViewById(R.id.user_login);
         signInButton.setOnClickListener(new OnClickListener() {
             @Override
@@ -85,6 +93,10 @@ public class LoginActivity extends AppCompatActivity {
         userList = db.getAllUsers();
     }
 
+    private void goBack() {
+        Intent i = new Intent(this, MainMenu.class);
+        startActivity(i);
+    }
 
     /**
      * Attempts to sign in or register the account specified by the login form.
