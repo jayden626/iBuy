@@ -59,8 +59,8 @@
                     android:layout_toStartOf="@+id/user_name"-->
 
                 <EditText
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:id="@+id/user_name"
                     android:hint="@string/prompt_username"
                     android:layout_marginStart="15dp"
@@ -72,7 +72,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <TextView
+                <!--<TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceSmall"
@@ -82,16 +82,17 @@
                     android:textAlignment="center"
                     android:layout_alignBaseline="@+id/password"
                     android:layout_alignBottom="@+id/password"
-                    android:layout_alignStart="@+id/label_username" />
+                    android:layout_alignStart="@+id/label_username" />-->
 
                 <EditText
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPassword"
                     android:ems="10"
-                    android:imeActionId="@+id/login"
+                    android:id="@+id/password"
                     android:imeActionLabel="@string/action_sign_in_short"
                     android:imeOptions="actionUnspecified"
+                    android:imeActionId="@+id/login"
                     android:hint="@string/prompt_password"
                     android:maxLines="1"
                     android:singleLine="true" />

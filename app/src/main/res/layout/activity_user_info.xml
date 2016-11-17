@@ -31,7 +31,7 @@
         android:text="@string/alert_off"
         android:id="@+id/alert"
         android:background="@drawable/mybutton"
-        android:onClick="@string/alert_on"
+
         android:layout_marginTop="56dp"
         android:layout_below="@+id/title"
         android:layout_alignStart="@+id/add_to_list" />
@@ -86,7 +86,7 @@
         android:text="Create Alert"
         android:id="@+id/create_alert"
         android:background="@drawable/mybutton"
-        android:onClick="@string/alert_on"
+
         android:layout_alignTop="@+id/alert"
         android:layout_centerHorizontal="true" />
 

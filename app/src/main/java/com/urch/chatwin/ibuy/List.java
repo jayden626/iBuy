@@ -26,7 +26,7 @@ public class List extends AppCompatActivity {
 
        // getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.custom_title);
         db = new DB_Handler(this.getApplicationContext());
-       // db.onUpgrade(db.getWritableDatabase(), 1, 1);
+       //db.onUpgrade(db.getWritableDatabase(), 1, 1);
         items = db.getAllItems();
 
 

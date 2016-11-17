@@ -38,7 +38,7 @@ public class UserCreate extends AppCompatActivity {
         userList = db.getAllUsers();
     }
 
-    public void createUser() {
+    public void createUser(View view) {
 
         if (userList.contains(username.getText())) {
             username.setText("Username Already Exists; try again!");
@@ -54,7 +54,7 @@ public class UserCreate extends AppCompatActivity {
     }
 
     public void backToLogin(View view) {
-        Intent intent = new Intent(this, MainMenu.class);//LoginActivity.class);
+        Intent intent = new Intent(this, MainMenu.class);
         startActivity(intent);
     }
 }

@@ -7,15 +7,14 @@ package com.urch.chatwin.ibuy;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
-import android.content.pm.PackageManager;
-import android.support.design.widget.Snackbar;
+import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 
 import android.os.AsyncTask;
 
 import android.os.Build;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
@@ -26,7 +25,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.List;
+
+import static java.security.AccessController.getContext;
 
 
 /**
@@ -34,8 +34,10 @@ import java.util.List;
  */
 public class LoginActivity extends AppCompatActivity {
 
+    int uID = -1;
     DB_Handler db;
     ArrayList<User> userList;
+    Context context;
 
     /**
      * Keep track of the login task to ensure we can cancel it if requested.
@@ -52,6 +54,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_login);
+        context = getApplicationContext();
         // Set up the login form.
         usernameView = (EditText) findViewById(R.id.user_name);
 
@@ -210,6 +213,13 @@ public class LoginActivity extends AppCompatActivity {
             if (db.getUsersCount() > 0 && userList.contains(userName)) {
 
                 //account exists, returns true (would check if password matched here if implemented)
+                for(User u : userList){
+                    if(u.getName().equalsIgnoreCase(userName)){
+                        uID = u.getId();
+                        break;
+                    }
+                }
+
 
                 return true;
             }
@@ -225,6 +235,10 @@ public class LoginActivity extends AppCompatActivity {
             showProgress(false);
 
             if (success) {
+                Intent intent = new Intent(context, userInfo.class);
+                intent.putExtra("id", uID);
+                startActivity(intent);
+
                 finish();
             } else {
                 mPasswordView.setError(getString(R.string.error_incorrect_password));

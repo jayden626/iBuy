@@ -33,7 +33,7 @@
         android:layout_below="@+id/title"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
-        android:onClick="userLoginP (MainMenu)" />
+        android:onClick="userLoginP" />
 
 
     <Button
@@ -45,7 +45,7 @@
         android:layout_below="@+id/user_login"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
-        android:onClick="createNewUser (MainMenu)" />
+        android:onClick="createNewUser" />
 
 
 </RelativeLayout>
